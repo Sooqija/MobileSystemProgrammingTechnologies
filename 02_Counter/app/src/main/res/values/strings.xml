@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">02_Counter</string>
+    <string name="current_value">Current Value</string>
+    <string name="first_value">0.0</string>
+    <string name="increase_by_one">+1</string>
+    <string name="decrease_by_one">-1</string>
+    <string name="power">x^2</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tg</string>
+    <string name="cot">ctg</string>
+</resources>
