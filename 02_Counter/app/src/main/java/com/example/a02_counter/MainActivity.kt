@@ -3,6 +3,7 @@ package com.example.a02_counter
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.widget.Button
 import android.widget.TextView
 import kotlin.math.cos
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             Score.text = counter.toString()
         }
         Power_Button = findViewById(R.id.PowerButton)
+        Power_Button.setText(Html.fromHtml("x<sup>2</sup>"))
         Power_Button.setOnClickListener {
             counter = counter.pow(2)
             Score.text = counter.toString()
