@@ -3,11 +3,8 @@ package com.example.a04_interface_elements
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.webkit.WebView
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import org.w3c.dom.Text
-import java.util.*
 
 class ListActivity: AppCompatActivity() {
     private lateinit var spinnerHeroPicker: Spinner
@@ -17,6 +14,8 @@ class ListActivity: AppCompatActivity() {
     private lateinit var seekBar:SeekBar
     private lateinit var seekBarIndicator:TextView
     private lateinit var previousPageButton: Button
+    private lateinit var nextPageButton: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +55,7 @@ class ListActivity: AppCompatActivity() {
 
         //SeekBar
         seekBar = findViewById(R.id.SeekBar)
-        seekBarIndicator =  findViewById(R.id.SeekBarIndicator)
+        seekBarIndicator =  findViewById(R.id.Solve)
         seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int,
                                            fromUser: Boolean) {
@@ -75,6 +74,11 @@ class ListActivity: AppCompatActivity() {
         previousPageButton = findViewById(R.id.PreviousPage)
         previousPageButton.setOnClickListener {
             val intent = Intent(this@ListActivity, DateActivity::class.java)
+            startActivity(intent)
+        }
+        nextPageButton = findViewById(R.id.NextPage)
+        nextPageButton.setOnClickListener {
+            val intent = Intent(this@ListActivity, ExerciseActivity::class.java)
             startActivity(intent)
         }
     }

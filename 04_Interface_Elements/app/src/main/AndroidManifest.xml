@@ -25,6 +25,7 @@
         <activity android:name=".PressedOrReleasedActivity" />
         <activity android:name=".DateActivity" />
         <activity android:name=".ListActivity" />
+        <activity android:name=".ExerciseActivity" />
     </application>
 
 </manifest>
