@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/next"
+        motion:duration="1000"
+        android:id="@+id/forward">
+        <OnSwipe
+            motion:touchAnchorSide="left"
+            motion:dragDirection="dragLeft" />
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/previous"
+        motion:duration="1000"
+        android:id="@+id/backward">
+        <OnSwipe
+            motion:touchAnchorSide="right"
+            motion:dragDirection="dragRight" />
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/previous"
+        motion:constraintSetEnd="@+id/previous2"
+        motion:duration="1000"
+        android:id="@+id/backward2">
+        <OnSwipe
+            motion:touchAnchorSide="right"
+            motion:dragDirection="dragRight" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/Task1"
+            android:layout_width="1sp"
+            android:layout_height="1sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintHorizontal_bias="0" />
+        <Constraint
+            android:id="@+id/Task2"
+            android:layout_width="75sp"
+            android:layout_height="75sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintHorizontal_bias="0.1" />
+        <Constraint
+            android:id="@+id/Task3"
+            android:layout_width="300sp"
+            android:layout_height="150sp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0.4" />
+        <Constraint
+            android:id="@+id/Task4"
+            android:layout_width="75sp"
+            android:layout_height="75sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintHorizontal_bias="0.9"/>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/previous">
+        <Constraint
+            android:id="@+id/Task1"
+            android:layout_width="75sp"
+            android:layout_height="75sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintHorizontal_bias="0.1" />
+        <Constraint
+            android:id="@+id/Task2"
+            android:layout_width="300sp"
+            android:layout_height="150sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5" />
+
+        <Constraint
+            android:id="@+id/Task3"
+            android:layout_width="75sp"
+            android:layout_height="75sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintHorizontal_bias="0.9" />
+
+        <Constraint
+            android:id="@+id/Task4"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintHorizontal_bias="1"/>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/next">
+        <Constraint
+            android:id="@+id/Task2"
+            android:layout_width="1sp"
+            android:layout_height="1sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintHorizontal_bias="0.0" />
+
+        <Constraint
+            android:id="@+id/Task3"
+            android:layout_width="75sp"
+            android:layout_height="75sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="0dp"
+            motion:layout_constraintHorizontal_bias="0.1" />
+
+        <Constraint
+            android:id="@+id/Task4"
+            android:layout_width="300sp"
+            android:layout_height="150sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/previous2">
+        <Constraint
+            android:id="@+id/Task1"
+            android:layout_width="300sp"
+            android:layout_height="150sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5" />
+
+        <Constraint
+            android:id="@+id/Task2"
+            android:layout_width="75sp"
+            android:layout_height="75sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="0dp"
+            motion:layout_constraintHorizontal_bias="0.9" />
+
+        <Constraint
+            android:id="@+id/Task3"
+            android:layout_width="1sp"
+            android:layout_height="1sp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintHorizontal_bias="1" />
+        <Constraint
+            android:id="@+id/Task4"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="1sp"
+            android:layout_height="1sp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0.4"
+            motion:layout_constraintHorizontal_bias="1" />
+
+    </ConstraintSet>
+
+</MotionScene>

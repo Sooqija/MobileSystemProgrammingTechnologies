@@ -3,12 +3,10 @@ package com.example.a04_interface_elements
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.widget.Button
 import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 
 fun Int.toBoolean() = if (this == 1) true else false
 fun Boolean.toInt() = if (this) 1 else 0
@@ -18,12 +16,12 @@ class ExerciseActivity: AppCompatActivity() {
     private lateinit var previousPageButton: Button
 
 
-    fun Start() {
+    private fun start() {
         val operation = arrayOf("+", "-", "*")
-        val operations = Array(4) { i-> operation[(0..2).random()] }
-        val isCorrect = Array(4) { i-> (0..1).random() }
-        val firstNumbers = Array(4) {i -> (0..10).random()}
-        val secondNumbers = Array(4) {i -> (0..10).random()}
+        val operations = Array(4) { _ -> operation[(0..2).random()] }
+        val isCorrect = Array(4) { _ -> (0..1).random() }
+        val firstNumbers = Array(4) {_ -> (0..10).random()}
+        val secondNumbers = Array(4) {_ -> (0..10).random()}
         val equation1 = findViewById<TextView>(R.id.Equation1)
         val equation2 = findViewById<TextView>(R.id.Equation2)
         val equation3 = findViewById<TextView>(R.id.Equation3)
@@ -42,7 +40,7 @@ class ExerciseActivity: AppCompatActivity() {
         for (i in 0..3) {
             if (isCorrect[i] == 1) {
                 when (operations[i]) {
-                    "+" -> equations[i].text = firstNumbers[i].toString() + " + " + secondNumbers[i] + " = " + (firstNumbers[i] + secondNumbers[i]).toString()
+                    "+" -> equations[i].setText(firstNumbers[i].toString() + " + " + secondNumbers[i] + " = " + (firstNumbers[i] + secondNumbers[i]).toString())
                     "-" -> equations[i].text = firstNumbers[i].toString() + " - " + secondNumbers[i] + " = " + (firstNumbers[i] - secondNumbers[i]).toString()
                     "*" -> equations[i].text = firstNumbers[i].toString() + " * " + secondNumbers[i] + " = " + (firstNumbers[i] * secondNumbers[i]).toString()
                 }
@@ -97,14 +95,14 @@ class ExerciseActivity: AppCompatActivity() {
             }
         }
         val refreshButton = findViewById<Button>(R.id.Refresh)
-        refreshButton.setOnClickListener { Start() }
+        refreshButton.setOnClickListener { start() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercise)
 
-        Start()
+        start()
 
         previousPageButton = findViewById(R.id.PreviousPage)
         previousPageButton.setOnClickListener {

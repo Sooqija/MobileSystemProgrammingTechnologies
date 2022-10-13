@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/drawable/selector.xml" value="0.2165" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/activity_date.xml" value="0.365625" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/activity_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/activity_drag_menu.xml" value="0.22" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/activity_list.xml" value="0.365625" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/activity_main.xml" value="0.3482789855072464" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/activity_slideshow.xml" value="0.33" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/activity_web.xml" value="0.36666666666666664" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/dialog.xml" value="0.365625" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/fragment_page.xml" value="0.365625" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/list_item.xml" value="0.32142857142857145" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/nav_headeer.xml" value="0.27421875" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/layout/nav_header.xml" value="0.365625" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/menu/drawer_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/05_Frame_Stack/app/src/main/res/xml/activity_drag_menu_scene.xml" value="0.27760416666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
