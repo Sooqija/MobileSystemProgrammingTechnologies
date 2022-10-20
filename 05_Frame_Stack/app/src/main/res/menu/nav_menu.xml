@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ShowIn="navigation_view"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/DoAction"
+        android:title="Сделать дело" />
+    <item
+        android:id="@+id/Walk"
+        android:title="Гулять Смело"/>
+    <item
+        android:id="@+id/Read"
+        android:title="Прочитать книгу"/>
+    <item
+        android:id="@+id/GotoSchool"
+        android:title="Сходить на учебу"/>
+</menu>

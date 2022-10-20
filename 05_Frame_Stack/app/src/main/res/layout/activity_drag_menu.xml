@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".DragMenuActivity">
-<!--    tools:openDrawer="start"-->
+    android:layout_height="match_parent">
 
     <com.google.android.material.navigation.NavigationView
-        app:menu="@menu/drawer_view"
-        android:id="@+id/left"
-        android:layout_width="match_parent"
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        android:fitsSystemWindows="true"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
-    </com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/nav_menu"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true" />
 
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        app:menu="@menu/drawer_view"-->
-<!--        android:id="@+id/top"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="end"-->
-<!--        app:headerLayout="@layout/nav_header"-->
-<!--        android:fitsSystemWindows="true"-->
-<!--        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >-->
-<!--    </com.google.android.material.navigation.NavigationView>-->
-
-
+    <LinearLayout
+        android:id="@+id/userChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        android:dividerPadding="100sp"
+        android:clipToPadding="true"
+        android:showDividers="middle"
+        android:divider="@drawable/empty_divider"
+        android:useDefaultMargins="true"
+        android:paddingStart="100sp">
+    <TextView
+        android:id="@+id/Choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Choice is"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.15"
+        android:layout_marginTop="100sp"
+        android:layout_marginStart="275sp"/>
+</LinearLayout>
 
     <LinearLayout
         android:id="@+id/frame"
@@ -44,7 +57,10 @@
         android:orientation="horizontal"
         android:dividerPadding="100sp"
         android:clipToPadding="true"
-        android:useDefaultMargins="true">
+        android:showDividers="middle"
+        android:divider="@drawable/empty_divider"
+        android:useDefaultMargins="true"
+        android:paddingStart="100sp">
 
         <Button
             android:id="@+id/PreviousPage"
@@ -59,7 +75,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:backgroundTint="@null"
-            android:layout_marginBottom="50sp" />
+            android:layout_marginBottom="30sp" />
 
         <Button
             android:id="@+id/NextPage"
@@ -74,42 +90,6 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:backgroundTint="@null"
-            android:layout_marginBottom="50sp" />
+            android:layout_marginBottom="30sp" />
     </LinearLayout>
-    <!--    <Button-->
-<!--        android:id="@+id/PreviousPage"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:width="200sp"-->
-<!--        android:height="60sp"-->
-<!--        android:background="@drawable/selector"-->
-<!--        android:text="Previous Page"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20sp"-->
-<!--        app:backgroundTint="@null"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.2"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.9"/>-->
-<!--    <Button-->
-<!--        android:id="@+id/NextPage"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:width="200sp"-->
-<!--        android:height="60sp"-->
-<!--        android:background="@drawable/selector"-->
-<!--        android:text="Next Page"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20sp"-->
-<!--        app:backgroundTint="@null"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.8"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.9" />-->
 </androidx.drawerlayout.widget.DrawerLayout>

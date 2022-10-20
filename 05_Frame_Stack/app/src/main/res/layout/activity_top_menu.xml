@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/routeCaptionBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="250sp"
+        android:background="#32979494"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="30sp"
+        app:layout_behavior="com.example.a05_frame_stack.TopSheetBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <Button
+            android:id="@+id/Tinker"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:textSize="20sp"
+            android:text="Tinker"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@null">
+        </Button>
+
+        <Button
+            android:id="@+id/Oracle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="Oracle"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@null"
+            android:layout_weight="0.25">
+        </Button>
+
+        <Button
+            android:id="@+id/ArcWarden"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="Arc Warden"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@null"
+            android:layout_weight="0.25">
+        </Button>
+
+        <Button
+            android:id="@+id/Dazzle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="Dazzle"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@null"
+            android:layout_weight="0.25"
+            >
+        </Button>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        android:dividerPadding="100sp"
+        android:clipToPadding="true"
+        android:showDividers="middle"
+        android:divider="@drawable/empty_divider"
+        android:useDefaultMargins="true"
+        android:paddingStart="100sp"
+        android:layout_marginTop="300sp">
+
+        <Button
+            android:id="@+id/PreviousPage"
+            android:layout_width="200sp"
+            android:layout_height="60sp"
+            android:background="@drawable/selector"
+            android:text="Previous Page"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:backgroundTint="@null"
+            android:layout_marginBottom="30sp" />
+
+        <Button
+            android:id="@+id/NextPage"
+            android:layout_width="200sp"
+            android:layout_height="60sp"
+            android:height="10sp"
+            android:background="@drawable/selector"
+            android:text="Next Page"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:backgroundTint="@null"
+            android:layout_marginBottom="30sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/Choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Choice is "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="240sp"
+        android:layout_marginStart="350sp"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
