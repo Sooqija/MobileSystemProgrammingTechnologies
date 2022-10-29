@@ -25,6 +25,10 @@
         </activity>
         <activity android:name=".SquaresList" />
         <activity android:name=".ExchangeRate" />
+        <activity android:name=".NoteList" />
+        <activity android:name=".CheckBoxState" />
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>
 
 </manifest>

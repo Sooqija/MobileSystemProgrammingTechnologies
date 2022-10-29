@@ -67,7 +67,7 @@ public class SquaresList extends AppCompatActivity {
         });
     }
 
-    public static class ListAdapter extends ArrayAdapter {
+    private static class ListAdapter extends ArrayAdapter {
 
         private int resourceLayout;
         private Context mContext;
