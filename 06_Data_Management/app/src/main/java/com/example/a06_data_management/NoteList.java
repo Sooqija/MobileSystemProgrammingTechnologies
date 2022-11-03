@@ -164,7 +164,7 @@ public class NoteList extends AppCompatActivity {
             }
         }
 
-        Cursor readAllData() { // ?
+        Cursor readAllData() {
             String query = "SELECT * FROM " + TABLE_NAME;
             SQLiteDatabase db = this.getReadableDatabase();
 
