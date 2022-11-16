@@ -29,6 +29,7 @@
         <activity android:name=".ParticlesActivity" />
         <activity android:name=".MusicActivity" />
         <activity android:name=".VideoActivity" />
+        <activity android:name=".FountainActivity" />
     </application>
 
 </manifest>

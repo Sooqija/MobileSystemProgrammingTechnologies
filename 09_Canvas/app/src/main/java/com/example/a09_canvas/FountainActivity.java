@@ -39,7 +39,7 @@ import java.util.Random;
 
 import me.ibrahimsn.particle.ParticleView;
 
-public class ParticlesActivity extends AppCompatActivity {
+public class FountainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,38 +47,31 @@ public class ParticlesActivity extends AppCompatActivity {
 
         ViewGroup main = findViewById(R.id.ParticlesOnTouch);
 
-        main.setOnTouchListener(new View.OnTouchListener() {
+        main.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                int x = (int)event.getX();
-                int y = (int)event.getY();
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN: {
-                        final Bitmap allPossibleParticles = Utils.createCircleBitmap(Color.BLACK, 20);
-                        final ParticlesGenerator particlesGenerator = new ParticlesGenerator() {
-                            @Override
-                            public Particles generateParticles(Random random) {
-                                final Bitmap bitmap = allPossibleParticles;
-                                return new BitmapParticles(bitmap);
-                            }
-                        };
-                        final int containerMiddleX = x;
-                        final int containerMiddleY = y;
-                        final ParticlesSource particlesSource = new ParticlesSource(containerMiddleX, containerMiddleY);
-                        float length = (float) Math.sqrt(180*180 + 180*180);
-                        for(int i = 0; i < 360; i++) {
-                            new ParticlesManager(ParticlesActivity.this, particlesGenerator, particlesSource, main)
-                                    .setNumInitialCount(1)
-                                    .setVelocityX((float) (length * Math.cos(i)))
-                                    .setVelocityY((float) (length * Math.sin(i)))
-                                    .animate();
-                        }
-                    }
-
-                    case MotionEvent.ACTION_MOVE:
-                    case MotionEvent.ACTION_UP:
+            public void onClick(View view) {
+            final Bitmap allPossibleParticles = Utils.createCircleBitmap(Color.BLACK, 20);
+            final ParticlesGenerator particlesGenerator = new ParticlesGenerator() {
+                @Override
+                public Particles generateParticles(Random random) {
+                    final Bitmap bitmap = allPossibleParticles;
+                    return new BitmapParticles(bitmap);
                 }
-                return false;
+            };
+
+            final int containerMiddleX = main.getWidth() / 2;
+            final int containerMiddleY = main.getHeight() *3/4;
+            final ParticlesSource particlesSource = new ParticlesSource(containerMiddleX, containerMiddleY);
+
+            ParticlesManager particlesManager = new ParticlesManager(FountainActivity.this, particlesGenerator, particlesSource, main)
+                    .setEmissionDuration(3000)
+                    .setEmissionRate(100)
+                    .setVelocityX(0)
+                    .setVelocityY(-720)
+                    .setAccelerationX(0, 100)
+                    .setAccelerationY(400)
+                    .setRotationalVelocity(180, 180)
+                    .animate();
             }
         });
 
@@ -86,7 +79,7 @@ public class ParticlesActivity extends AppCompatActivity {
         bPreviousPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ParticlesActivity.this, SpriteActivity.class);
+                Intent intent = new Intent(FountainActivity.this, ParticlesActivity.class);
                 startActivity(intent);
             }
         });
@@ -95,7 +88,7 @@ public class ParticlesActivity extends AppCompatActivity {
         bNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ParticlesActivity.this, FountainActivity.class);
+                Intent intent = new Intent(FountainActivity.this, MusicActivity.class);
                 startActivity(intent);
             }
         });

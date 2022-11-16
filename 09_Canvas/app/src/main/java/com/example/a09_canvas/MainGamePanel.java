@@ -1,7 +1,6 @@
 package com.example.a09_canvas;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,11 +10,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
-import androidx.annotation.MainThread;
 
 public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
