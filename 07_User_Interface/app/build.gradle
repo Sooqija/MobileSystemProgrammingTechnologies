@@ -4,7 +4,6 @@ plugins {
 
 android {
     compileSdk 32
-
     defaultConfig {
         applicationId "com.a07_user_interface"
         minSdk 23

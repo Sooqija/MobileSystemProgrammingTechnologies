@@ -45,38 +45,45 @@ public:
 };
 
 
-class to;
-
 class StringList {
 private:
     std::vector<std::string> list;
     std::string result;
+    bool is_added;
+
 public:
     StringList () = default;
 
-    void push(const std::string& element) {
-       std::string toup;
-       std::string tolow;
-       std::string toad = "";
-       if (element.size() != 0) {
-           toup = element.substr(0, 1);
-           for (auto & c: toup) toad += toupper(c);
-           tolow = element.substr(1, element.size()-1);
-           for (auto & c: tolow) toad += tolower(c);
-       }
-       list.emplace_back(toad);
-       if (list.size() == 1) {
-           if (list[0].size() != 0) {
-               toup = list[0].substr(0, 1);
-               for (auto & c: toup) result += toupper(c);
-               tolow = list[0].substr(1, list[0].size()-1);
-               for (auto & c: tolow) result += tolower(c);
-           }
-       } else {
-           tolow = element.substr(0, element.size());
-           result += ", ";
-           for (auto &c: tolow) result += tolower(c);
-       }
+    bool push(const std::string& element) {
+        std::string toup;
+        std::string tolow;
+        std::string toad = "";
+        if (element.size() != 0) {
+            toup = element.substr(0, 1);
+            for (auto & c: toup) toad += toupper(c);
+            tolow = element.substr(1, element.size()-1);
+            for (auto & c: tolow) toad += tolower(c);
+        }
+        if (std::find(list.begin(), list.end(), toad) != list.end()) {} else {
+            list.emplace_back(toad);
+
+            if (list.size() == 1) {
+                if (list[0].size() != 0) {
+                    toup = list[0].substr(0, 1);
+                    for (auto & c: toup) result += toupper(c);
+                    tolow = list[0].substr(1, list[0].size()-1);
+                    for (auto & c: tolow) result += tolower(c);
+                }
+            } else {
+                tolow = element.substr(0, element.size());
+                result += ", ";
+                for (auto &c: tolow) result += tolower(c);
+            }
+            is_added = true;
+            return true;
+        }
+        is_added = false;
+        return false;
     }
 
     void pop() {
@@ -94,6 +101,10 @@ public:
 
     const char * getAll() {
         return result.c_str();
+    }
+
+    const bool getIsAdded() {
+        return is_added;
     }
 };
 
@@ -161,4 +172,10 @@ Java_com_example_a08_1logic_1integration_StringListActivity_getAllStringList(JNI
                                                                              jclass clazz,
                                                                              jlong nativePointer) {
     return env->NewStringUTF((((StringList*)nativePointer)->getAll()));
+}
+extern "C"
+JNIEXPORT jboolean JNICALL
+Java_com_example_a08_1logic_1integration_StringListActivity_getIsAdded(JNIEnv *env, jclass clazz,
+                                                                       jlong nativePointer) {
+    return ((StringList*)nativePointer)->getIsAdded();
 }

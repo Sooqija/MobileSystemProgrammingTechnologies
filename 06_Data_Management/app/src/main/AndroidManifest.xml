@@ -27,6 +27,7 @@
         <activity android:name=".ExchangeRate" />
         <activity android:name=".NoteList" />
         <activity android:name=".CheckBoxState" />
+        <activity android:name=".Login" />
 
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>

@@ -26,6 +26,9 @@ public class StringListActivity extends AppCompatActivity {
     public native static long popStringList(long nativePointer);
     public native static String getStringList(int position, long nativePointer);
     public native static String getAllStringList(long nativePointer);
+    public native static boolean getIsAdded(long nativePointer);
+
+
 
     public class JStringList {
         private long nativePointer;
@@ -43,6 +46,9 @@ public class StringListActivity extends AppCompatActivity {
         }
         public String JGetALL() {
             return getAllStringList(nativePointer);
+        }
+        public boolean JGetIsAdded() {
+            return getIsAdded(nativePointer);
         }
     }
 
@@ -68,10 +74,13 @@ public class StringListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String str = String.valueOf(Item.getText());
-                Notes.add(str);
                 list.JPush(str);
-                listOneString.setText(list.JGetALL());
-                adapter.notifyDataSetChanged();
+                bAddNewItem.setText(String.valueOf(list.JGetIsAdded()));
+                if (list.JGetIsAdded()) {
+                    Notes.add(str);
+                    listOneString.setText(list.JGetALL());
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
         Button bDeleteLastItem = findViewById(R.id.DeleteLastItem);

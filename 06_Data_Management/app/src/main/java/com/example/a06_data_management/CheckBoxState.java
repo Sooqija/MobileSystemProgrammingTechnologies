@@ -36,10 +36,17 @@ public class CheckBoxState extends AppCompatActivity {
             public void onGlobalLayout() {
                 text[0] = String.valueOf(editText.getText());
                 PreferenceManager.getDefaultSharedPreferences(CheckBoxState.this).edit().putString("editText", text[0]).commit();
-
             }
         });
 
+        Button bNext = findViewById(R.id.NextPage);
+        bNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CheckBoxState.this, Login.class);
+                startActivity(intent);
+            }
+        });
         Button bPrevious = findViewById(R.id.PreviousPage);
         bPrevious.setOnClickListener(new View.OnClickListener() {
             @Override

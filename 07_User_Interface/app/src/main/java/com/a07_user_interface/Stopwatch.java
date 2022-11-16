@@ -3,7 +3,11 @@ package com.a07_user_interface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AnalogClock;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +21,7 @@ public class Stopwatch extends AppCompatActivity {
     int hour = 0;
     boolean isStart = true;
     Timer Stopwatch = new Timer();
+    int second_rotation = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,8 @@ public class Stopwatch extends AppCompatActivity {
 
         Button bStart = findViewById(R.id.Start);
         TextView tStopwatch = findViewById(R.id.Stopwatch);
+        CustomAnalogClock clock = findViewById(R.id.analog_clock);
+        clock.setTime(1000*60*60*(-3));
         bStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +50,7 @@ public class Stopwatch extends AppCompatActivity {
                                     minute = (minute + second / 60) % 60;
                                     second %= 60;
                                     tStopwatch.setText(time);
+                                    clock.setTime(1000*60*60*(-3) + 60*1000*(second-1) + minute*5*1000*60);
                                 }
                             }));
                         }
