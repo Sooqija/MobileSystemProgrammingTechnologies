@@ -61,7 +61,7 @@ public class SquaresList extends AppCompatActivity {
         bPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SquaresList.this, MainActivity.class);
+                Intent intent = new Intent(SquaresList.this, Login.class);
                 startActivity(intent);
             }
         });
