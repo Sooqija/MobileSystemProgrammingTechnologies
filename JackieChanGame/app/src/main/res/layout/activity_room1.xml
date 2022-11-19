@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/room0"
-    android:backgroundTint="@null">
-
-
-
+    android:background="@drawable/room1"
+    android:backgroundTint="@null"
+    android:id="@+id/room1">
 
     <LinearLayout
         android:layout_width="125dp"
@@ -155,28 +153,17 @@
 
     </LinearLayout>
 
-
-    <ImageView
-        android:id="@+id/Tower"
-        android:layout_width="291dp"
-        android:layout_height="471dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tower" />
-
     <ImageView
         android:id="@+id/Key"
-        android:layout_width="67dp"
-        android:layout_height="230dp"
+        android:layout_width="76dp"
+        android:layout_height="103dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.9"
         app:srcCompat="@drawable/key" />
 
     <ImageView
@@ -185,11 +172,77 @@
         android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.234"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549"
+        app:layout_constraintVertical_bias="0.9"
         app:srcCompat="@drawable/jackie_chan" />
+
+    <ImageView
+        android:id="@+id/Shadow"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:rotation="30"
+        android:rotationX="40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.669"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        app:srcCompat="@drawable/shadow" />
+
+    <ImageView
+        android:id="@+id/Toru"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.551"
+        app:srcCompat="@drawable/toru" />
+
+    <ImageView
+        android:id="@+id/ShadowEater"
+        android:layout_width="58dp"
+        android:layout_height="57dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.629"
+        app:srcCompat="@drawable/shadow_eater" />
+
+    <ImageView
+        android:id="@+id/ShadowEaterCopy"
+        android:layout_width="58dp"
+        android:layout_height="57dp"
+        android:rotationY="180"
+        android:scaleX="4.0"
+        android:scaleY="4.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.701"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.367"
+        app:srcCompat="@drawable/shadow_eater"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/Jade"
+        android:layout_width="135dp"
+        android:layout_height="117dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.836"
+        app:srcCompat="@drawable/jade" />
 
     <Button
         android:id="@+id/Reset"
@@ -225,7 +278,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/GoRight"
@@ -244,7 +298,8 @@
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/GoDown"
@@ -263,7 +318,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1" />
+        app:layout_constraintVertical_bias="1"
+        android:visibility="visible"/>
 
     <Button
         android:id="@+id/GoLeft"
@@ -282,6 +338,7 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

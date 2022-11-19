@@ -1,6 +1,340 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/room3"
+    android:backgroundTint="@null"
+    android:id="@+id/room3">
+
+    <LinearLayout
+        android:layout_width="125dp"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007">
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rect_for_key" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rect_for_key" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rect_for_key" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rect_for_key" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rect_for_key" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="125dp"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007">
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp">
+
+            <ImageView
+                android:id="@+id/Key1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/key"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp">
+
+            <ImageView
+                android:id="@+id/Key2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/key"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp">
+
+            <ImageView
+                android:id="@+id/Key3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/key"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp">
+
+            <ImageView
+                android:id="@+id/Key4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/key"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp">
+
+            <ImageView
+                android:id="@+id/Key5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/key"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/Wall"
+        android:layout_width="594dp"
+        android:layout_height="260dp"
+        android:rotationX="-60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/wall"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/SuperMoose"
+        android:layout_width="67dp"
+        android:layout_height="230dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.972"
+        app:srcCompat="@drawable/moose" />
+
+    <ImageView
+        android:id="@+id/MonkeyKing"
+        android:layout_width="103dp"
+        android:layout_height="238dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.848"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.497"
+        app:srcCompat="@drawable/monkey_king" />
+
+    <ImageView
+        android:id="@+id/Dwarf"
+        android:layout_width="133dp"
+        android:layout_height="147dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.617"
+        app:srcCompat="@drawable/dwarf" />
+
+
+
+    <ImageView
+        android:id="@+id/Key"
+        android:layout_width="67dp"
+        android:layout_height="230dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.546"
+        app:srcCompat="@drawable/key" />
+
+    <ImageView
+        android:id="@+id/JackieChan"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54"
+        app:srcCompat="@drawable/jackie_chan" />
+
+    <ImageView
+        android:id="@+id/Stone"
+        android:layout_width="199dp"
+        android:layout_height="83dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/stone"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/Reset"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/selector"
+        android:text="&#x1F504;"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/GoUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="80sp"
+        android:height="40sp"
+        android:background="@drawable/selector"
+        android:text="↑"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/GoRight"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:width="40sp"
+        android:height="80sp"
+        android:background="@drawable/selector"
+        android:text="→"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/GoDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="80sp"
+        android:height="40sp"
+        android:background="@drawable/selector"
+        android:text="↓"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/GoLeft"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:width="40sp"
+        android:height="80sp"
+        android:background="@drawable/selector"
+        android:text="←"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

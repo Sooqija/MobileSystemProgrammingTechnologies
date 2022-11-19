@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/room0"
-    android:backgroundTint="@null">
-
-
-
+    android:background="@drawable/room4"
+    android:backgroundTint="@null"
+    android:id="@+id/room4">
 
     <LinearLayout
         android:layout_width="125dp"
@@ -155,28 +153,43 @@
 
     </LinearLayout>
 
-
     <ImageView
-        android:id="@+id/Tower"
-        android:layout_width="291dp"
-        android:layout_height="471dp"
+        android:id="@+id/Bed"
+        android:layout_width="200dp"
+        android:layout_height="227dp"
+        android:rotationX="-50"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tower" />
+        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/bed" />
+
+    <ImageView
+        android:id="@+id/Uncle"
+        android:layout_width="123dp"
+        android:layout_height="117dp"
+        android:rotation="-40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/uncle" />
 
     <ImageView
         android:id="@+id/Key"
-        android:layout_width="67dp"
-        android:layout_height="230dp"
+        android:layout_width="58dp"
+        android:layout_height="83dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.792"
         app:srcCompat="@drawable/key" />
 
     <ImageView
@@ -185,10 +198,10 @@
         android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.234"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549"
+        app:layout_constraintVertical_bias="0.65"
         app:srcCompat="@drawable/jackie_chan" />
 
     <Button
@@ -225,7 +238,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/GoRight"
@@ -244,7 +258,8 @@
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        android:visibility="visible"/>
 
     <Button
         android:id="@+id/GoDown"
@@ -263,7 +278,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1" />
+        app:layout_constraintVertical_bias="1"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/GoLeft"
@@ -282,6 +298,7 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
