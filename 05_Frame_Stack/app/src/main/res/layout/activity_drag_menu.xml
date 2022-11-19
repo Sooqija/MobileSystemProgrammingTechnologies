@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true" />
+
+    <LinearLayout
+        android:id="@+id/userChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        android:dividerPadding="100sp"
+        android:clipToPadding="true"
+        android:showDividers="middle"
+        android:divider="@drawable/empty_divider"
+        android:useDefaultMargins="true"
+        android:paddingStart="100sp">
+    <TextView
+        android:id="@+id/Choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Choice is"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.15"
+        android:layout_marginTop="100sp"
+        android:layout_marginStart="275sp"/>
+</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        android:dividerPadding="100sp"
+        android:clipToPadding="true"
+        android:showDividers="middle"
+        android:divider="@drawable/empty_divider"
+        android:useDefaultMargins="true"
+        android:paddingStart="100sp">
+
+        <Button
+            android:id="@+id/PreviousPage"
+            android:layout_width="200sp"
+            android:layout_height="60sp"
+            android:height="10sp"
+            android:background="@drawable/selector"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:text="Previous Page"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:backgroundTint="@null"
+            android:layout_marginBottom="30sp" />
+
+        <Button
+            android:id="@+id/NextPage"
+            android:layout_width="200sp"
+            android:layout_height="60sp"
+            android:height="10sp"
+            android:background="@drawable/selector"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:text="Next Page"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:backgroundTint="@null"
+            android:layout_marginBottom="30sp" />
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

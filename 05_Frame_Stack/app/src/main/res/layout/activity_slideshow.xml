@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- activity_main.xml -->
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/activity_slideshow_scene"
+    tools:showPaths="true">
+
+   <TextView
+       android:id="@+id/Task1"
+       android:layout_width="1sp"
+       android:layout_height="1sp"
+       android:background="#009688"
+       android:text="Task 1 \n Сделать дело \n 17.02.2017"
+       android:textColor="@color/black"
+       android:textSize="20sp"
+       android:gravity="center"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.5" />
+
+   <TextView
+       android:id="@+id/Task2"
+       android:layout_width="50sp"
+       android:layout_height="50sp"
+       android:layout_marginEnd="300sp"
+       android:background="#009688"
+       android:text="Task 2 \n Гулять смело \n 17.02.2017"
+       android:textColor="@color/black"
+       android:textSize="20sp"
+       android:gravity="center"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.2"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.5" />
+
+   <TextView
+       android:id="@+id/Task3"
+       android:layout_width="200sp"
+       android:layout_height="100sp"
+       android:background="#009688"
+       android:text="Task 3 \n Прочитать книгу \n 16.02.2017"
+       android:gravity="center"
+       android:textColor="@color/black"
+       android:textSize="20sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.5"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.5" />
+
+   <TextView
+       android:id="@+id/Task4"
+       android:layout_width="50sp"
+       android:layout_height="50sp"
+       android:background="#009688"
+       android:text="Task 4 \n Сходить на учебу \n 15.02.2017"
+       android:textColor="@color/black"
+       android:gravity="center"
+       android:textSize="20sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.8"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.5" />
+
+
+   <Button
+       android:id="@+id/PreviousPage"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:width="200sp"
+       android:height="60sp"
+       android:background="@drawable/selector"
+       android:text="Previous Page"
+       android:textAllCaps="false"
+       android:textColor="@color/black"
+       android:textSize="20sp"
+       app:backgroundTint="@null"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.2"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.9"/>
+   <Button
+       android:id="@+id/NextPage"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:width="200sp"
+       android:height="60sp"
+       android:background="@drawable/selector"
+       android:text="Next Page"
+       android:textAllCaps="false"
+       android:textColor="@color/black"
+       android:textSize="20sp"
+       app:backgroundTint="@null"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.8"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.9" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

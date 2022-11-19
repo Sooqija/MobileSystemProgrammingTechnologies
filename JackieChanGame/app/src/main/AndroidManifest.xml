@@ -14,13 +14,7 @@
         android:theme="@style/Theme.JackieChanGame"
         tools:targetApi="31">
         <activity
-            android:name=".RulesActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoadGameActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
