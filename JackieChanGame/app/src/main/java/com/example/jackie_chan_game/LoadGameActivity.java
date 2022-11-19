@@ -120,7 +120,7 @@ public class LoadGameActivity extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                start_flag = true;
+                LoadGameActivity.this.finish();
             }
         });
     }
