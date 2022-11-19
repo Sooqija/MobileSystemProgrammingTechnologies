@@ -1,12 +1,10 @@
 package com.example.jackie_chan_game;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.viewmodel.InitializerViewModelFactoryBuilder;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 // TODO Пофиксить баг с дверью
-// TODO Реализовать первую верхнюю комнату
+// TODO Реализовать вторую правую комнату
 
 // TODO Реализовать логику ключей
 // TODO Реализовать машину состояний для нулевой комнаты
@@ -119,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             GoUp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_leave_up);
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_leave_main_to_up);
                     anim.setStartOffset(500);
                     anim.setAnimationListener(new Animation.AnimationListener() {
                         @Override public void onAnimationStart(Animation animation) { }
@@ -135,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             GoRight.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_go_down);
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_leave_main_to_right);
                     anim.setStartOffset(500);
                     anim.setAnimationListener(new Animation.AnimationListener() {
                         @Override public void onAnimationStart(Animation animation) { }
@@ -198,14 +195,13 @@ public class MainActivity extends AppCompatActivity {
         ImageView Jade;
         ImageView Toru;
         ImageView ShadowEater;
-        ImageView ShadowEaterCopy;
         ImageView Shadow;
 
         OneAboveRoom (int state) {
             init();
-            startEntryAnimation();
             switch (state) {
                 case 0: {
+                    startEntryAnimation();
                     Jade.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -220,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                             dialog_click.showDialog("Плохой день. Тень Тору съел поедатель теней.");
                         }
                     });
-                    ShadowEaterCopy.setOnClickListener(new View.OnClickListener() {
+                    ShadowEater.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             global_case = "ShadowEater";
@@ -228,6 +224,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                     break;
+                }
+                case 1: {
+                    ShadowEater.setVisibility(View.INVISIBLE);
                 }
             }
         } // constructor OneAboveRoom
@@ -240,7 +239,6 @@ public class MainActivity extends AppCompatActivity {
             Jade = findViewById(R.id.Jade);
             Toru = findViewById(R.id.Toru);
             ShadowEater = findViewById(R.id.ShadowEater);
-            ShadowEaterCopy = findViewById(R.id.ShadowEaterCopy);
             Shadow = findViewById(R.id.Shadow);
             order = 0;
 
@@ -289,8 +287,6 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onAnimationEnd(Animation animation) {
                             Shadow.setVisibility(View.INVISIBLE);
-                            ShadowEaterCopy.setVisibility(View.VISIBLE);
-                            ShadowEater.setVisibility(View.GONE);
                             Animation anim4 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.toru_dies);
                             anim4.setStartOffset(500);
                             Toru.startAnimation(anim4);
@@ -385,8 +381,9 @@ public class MainActivity extends AppCompatActivity {
             GoLeft.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_go_up);
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_entry_right);
                     anim.setStartOffset(500);
+                    anim.setInterpolator(new ReverseInterpolator());
                     anim.setAnimationListener(new Animation.AnimationListener() {
                         @Override public void onAnimationStart(Animation animation) { }
                         @Override
@@ -718,6 +715,7 @@ public class MainActivity extends AppCompatActivity {
                     case "Dragon Talisman": {
                         TalismansNames.remove(current);
                         TalismansImages.remove(current);
+                        belowRoom.Wall.clearAnimation();
                         belowRoom.Wall.setVisibility(View.GONE);
                         belowRoom.order++;
                         state3 = 1;
@@ -815,16 +813,8 @@ public class MainActivity extends AppCompatActivity {
 
                         aboveRoom.order++;
                         if (aboveRoom.order == 1) {
-                            int times = 0;
-                            while(true) {
-                                if (times != 5) {
-                                    aboveRoom.JackieChan.setVisibility(View.INVISIBLE);
-
-                                } else {
-                                    break;
-                                }
-                                aboveRoom.JackieChan.setVisibility(View.VISIBLE);
-                            }
+                            aboveRoom.JackieChan.clearAnimation();
+                            aboveRoom.JackieChan.setVisibility(View.INVISIBLE);
                             dialog_done.showDialog("Отлично! Если Вас не видно, то и тени у Вас нет");
                         } else {
                             dialog_done.showDialog("Ничего не произошло.");
@@ -847,7 +837,6 @@ public class MainActivity extends AppCompatActivity {
                         TalismansImages.remove(current);
                         aboveRoom.order++;
                         if (aboveRoom.order == 2) {
-                            // TODO Анимация спасения Тору
                             Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.toru_dies);
                             anim.setStartOffset(500);
                             anim.setInterpolator(new ReverseInterpolator());
@@ -857,7 +846,31 @@ public class MainActivity extends AppCompatActivity {
                                 public void onAnimationStart(Animation animation) {}
                                 @Override
                                 public void onAnimationEnd(Animation animation) {
-                                    dialog_done.showDialogTimer("Ура, Тору в безопасности! Но применение талисмана вывело Вас из невидимости! Поедатель теней вот-вот съест Вашу тень, берегись!", 5000);
+                                    aboveRoom.Shadow.clearAnimation();
+                                    aboveRoom.Shadow.setVisibility(View.VISIBLE);
+                                    Animation anim2 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.shadow_eater_grows);
+                                    anim2.setInterpolator(new ReverseInterpolator());
+                                    aboveRoom.ShadowEater.startAnimation(anim2);
+                                    Animation anim1 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.toru_save);
+                                    anim1.setStartOffset(500);
+                                    aboveRoom.Toru.startAnimation(anim1);
+                                    aboveRoom.Shadow.startAnimation(anim1);
+                                    anim1.setAnimationListener(new Animation.AnimationListener() {
+                                        @Override
+                                        public void onAnimationStart(Animation animation) { }
+                                        @Override
+                                        public void onAnimationEnd(Animation animation) {
+                                            aboveRoom.Shadow.clearAnimation();
+                                            aboveRoom.Shadow.setVisibility(View.INVISIBLE);
+                                            aboveRoom.JackieChan.setVisibility(View.VISIBLE);
+                                            Animation anim3 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_horse_talisman);
+                                            aboveRoom.JackieChan.startAnimation(anim3);
+                                            aboveRoom.Shadow.setVisibility(View.VISIBLE);
+                                            dialog_done.showDialogTimer("Ура, Тору в безопасности! Но применение талисмана вывело Вас из невидимости! Поедатель теней вот-вот съест Вашу тень, берегись!", 5000);
+                                        }
+                                        @Override
+                                        public void onAnimationRepeat(Animation animation) {}
+                                    });
                                 }
                                 @Override
                                 public void onAnimationRepeat(Animation animation) {}
@@ -883,15 +896,57 @@ public class MainActivity extends AppCompatActivity {
                         TalismansImages.remove(current);
                         aboveRoom.order++;
                         if (aboveRoom.order == 3) {
-                            // TODO Анимация победы над пожирателем теней
-                            keys++;
-                            keyAnimation();
-                            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.gold_key);
-                            anim.setStartOffset(500);
-                            aboveRoom.GoldKey.setVisibility(View.VISIBLE);
-                            aboveRoom.GoldKey.startAnimation(anim);
-                            dialog_done.showDialog("Джейд удается поглотить пылесосом пожирателя теней. В благодарность за помощь Вы получаете ключ.");
-                        } else {
+                            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_rabbit_talisman);
+                            Animation anim1 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.shadow_move);
+                            aboveRoom.JackieChan.startAnimation(anim);
+                            aboveRoom.Shadow.clearAnimation();
+                            aboveRoom.Shadow.setVisibility(View.VISIBLE);
+                            aboveRoom.Shadow.startAnimation(anim1);
+                            aboveRoom.Shadow.setRotation(-40);
+                            aboveRoom.Shadow.setRotationX(-40);
+                            Animation anim2 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.shadow_eater_move);
+                            aboveRoom.ShadowEater.startAnimation(anim2);
+                            anim2.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) { }
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    Animation anim3 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jade_takes_down_shadow_eater);
+                                    aboveRoom.Jade.startAnimation(anim3);
+                                    anim3.setAnimationListener(new Animation.AnimationListener() {
+                                        @Override
+                                        public void onAnimationStart(Animation animation) { }
+                                        @Override
+                                        public void onAnimationEnd(Animation animation) {
+                                            aboveRoom.ShadowEater.clearAnimation();
+                                            aboveRoom.ShadowEater.setVisibility(View.INVISIBLE);
+                                            keys++;
+                                            keyAnimation();
+                                            Animation anim4 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.gold_key);
+                                            anim4.setStartOffset(500);
+                                            aboveRoom.GoldKey.setVisibility(View.VISIBLE);
+                                            aboveRoom.GoldKey.startAnimation(anim4);
+                                            anim4.setAnimationListener(new Animation.AnimationListener() {
+                                                @Override
+                                                public void onAnimationStart(Animation animation) { }
+                                                @Override
+                                                public void onAnimationEnd(Animation animation) {
+                                                    dialog_done.showDialog("Джейд удается поглотить пылесосом пожирателя теней. В благодарность за помощь Вы получаете ключ.");
+                                                    state1 = 1;
+                                                }
+                                                @Override
+                                                public void onAnimationRepeat(Animation animation) { }
+                                            });
+                                        }
+                                        @Override
+                                        public void onAnimationRepeat(Animation animation) { }
+                                    });
+                                }
+                                @Override
+                                public void onAnimationRepeat(Animation animation) { }
+                            });
+
+                  } else {
                             dialog_done.showDialogEndGame("Вы выходите на свет к Джейд и Вашу тень поглощает пожиратель теней. Вы проиграли. Еще раз?");
                         }
                         break;
@@ -900,6 +955,95 @@ public class MainActivity extends AppCompatActivity {
                         TalismansNames.remove(current);
                         TalismansImages.remove(current);
                         dialog_done.showDialogEndGame("Вы выходите на свет к Джейд и Вашу тень поглощает пожиратель теней. Вы проиграли. Еще раз?");
+                        break;
+                    }
+                }
+                break;
+            }
+            case "Stare": {
+                switch (TalismansNames.get(current)) {
+                    case "Tiger Talisman": {
+                        TalismansNames.remove(current);
+                        TalismansImages.remove(current);
+                        rightRoom.order++;
+                        if (rightRoom.order == 1) {
+                            rightRoom.Stare.setVisibility(View.INVISIBLE);
+                            rightRoom.Water.setVisibility(View.VISIBLE);
+                            // TODO Анимация подхода к лестнице, клонировании и ее разрушение
+                            dialog_done.showDialogTimer("О нет, лестница разрушилась! Вы сейчас утоните.", 5000);
+                        }
+                        break;
+                    }
+                    default: {
+                        TalismansNames.remove(current);
+                        TalismansImages.remove(current);
+                        dialog_done.showDialogEndGame("Лестница разрушилась, вы утонули.");
+                        break;
+                    }
+
+                }
+                break;
+            }
+            case "Water": {
+                switch (TalismansNames.get(current)) {
+                    case "Monkey Talisman": {
+                        TalismansNames.remove(current);
+                        TalismansImages.remove(current);
+                        rightRoom.order++;
+                        if (rightRoom.order == 2) {
+                            // TODO Анимация превращения в краба
+                            dialog_done.showDialog("Вы превратились в краба. Теперь вы не утоните.");
+                        }
+                        break;
+                    }
+                    default: {
+                        TalismansNames.remove(current);
+                        TalismansImages.remove(current);
+                        dialog_done.showDialogEndGame("Ничего не произошло");
+                        break;
+                    }
+                }
+                break;
+            }
+            case "Ventile": {
+                switch (TalismansNames.get(current)) {
+                    case "Ox Talisman": {
+                        TalismansNames.remove(current);
+                        TalismansImages.remove(current);
+                        rightRoom.order++;
+                        if (rightRoom.order == 3) {
+                            // TODO Анимация вентиля, ключа, потока воды
+                            GoLeft.setEnabled(false);
+                            dialog_done.showDialogTimer("Вы открыли клапан, ключ выплыл из дыры в трубе. Но напор воды стал хлещет с такой силой, что вентиль просто невыдержал нагрузки и сломался. Еще вот вот и вся комната будет затоплена!", 5000);
+                        }
+                        break;
+                    }
+                    default: {
+                        TalismansNames.remove(current);
+                        TalismansImages.remove(current);
+                        dialog_done.showDialogEndGame("Ничего не произошло.");
+                        break;
+                    }
+                }
+                break;
+            }
+            case "Crack": {
+                switch (TalismansNames.get(current)) {
+                    case "Pig Talisman": {
+                        TalismansNames.remove(current);
+                        TalismansImages.remove(current);
+                        rightRoom.order++;
+                        if (rightRoom.order == 4) {
+                            // TODO Анимация сварки
+                            dialog_done.showDialog("Вы заварили дыру в трубе. Вы спасли сами себя.");
+                            GoLeft.setEnabled(true);
+                        }
+                        break;
+                    }
+                    default: {
+                        TalismansNames.remove(current);
+                        TalismansImages.remove(current);
+                        dialog_done.showDialogEndGame("Ничего не произошло.");
                         break;
                     }
                 }
