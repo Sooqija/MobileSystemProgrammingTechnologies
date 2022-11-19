@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">02_Interface_Construction</string>
-    <string name="next">Next Page</string>
-    <string name="sum">Sum</string>
-    <string name="previous">Previous Page</string>
-    <string name="dialog">Show Dialog</string>
-    <string name="cancel">Cancel</string>
-    <string name="confirm">Confirm</string>
-</resources>
