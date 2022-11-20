@@ -13,6 +13,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -34,6 +36,7 @@ import com.tutorials.android.particles.Utils;
 import com.tutorials.android.particles.particles.BitmapParticles;
 import com.tutorials.android.particles.particles.Particles;
 
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
@@ -50,7 +53,9 @@ public class FountainActivity extends AppCompatActivity {
         main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            final Bitmap allPossibleParticles = Utils.createCircleBitmap(Color.BLACK, 20);
+            // Дополнительное задание: поставить свою картинку на частицы
+            // Просто что-то: final Bitmap allPossibleParticles = Utils.createCircleBitmap(Color.BLACK, 20);
+            final Bitmap allPossibleParticles = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.drop1), 120, 120, false);
             final ParticlesGenerator particlesGenerator = new ParticlesGenerator() {
                 @Override
                 public Particles generateParticles(Random random) {
@@ -63,14 +68,33 @@ public class FountainActivity extends AppCompatActivity {
             final int containerMiddleY = main.getHeight() *3/4;
             final ParticlesSource particlesSource = new ParticlesSource(containerMiddleX, containerMiddleY);
 
+            // Дополнительное задание: поставить картинку на частицы
+            // Просто сделать фонтан:
+            // ParticlesManager particlesManager = new ParticlesManager(FountainActivity.this, particlesGenerator, particlesSource, main)
+            //                    .setEmissionDuration(3000)
+            //                    .setEmissionRate(50)
+            //                    .setVelocityX(0)
+            //                    .setVelocityY(-720)
+            //                    .setAccelerationX(0, 100)
+            //                    .setAccelerationY(400)
+            //                    .animate();
             ParticlesManager particlesManager = new ParticlesManager(FountainActivity.this, particlesGenerator, particlesSource, main)
                     .setEmissionDuration(3000)
-                    .setEmissionRate(100)
+                    .setEmissionRate(50)
                     .setVelocityX(0)
                     .setVelocityY(-720)
-                    .setAccelerationX(0, 100)
+                    .setAccelerationX(-50, 50)
                     .setAccelerationY(400)
-                    .setRotationalVelocity(180, 180)
+                    .setRotationalVelocity(-45)
+                    .animate();
+            new ParticlesManager(FountainActivity.this, particlesGenerator, particlesSource, main)
+                    .setEmissionDuration(3000)
+                    .setEmissionRate(50)
+                    .setVelocityX(0)
+                    .setVelocityY(-720)
+                    .setAccelerationX(50, 50)
+                    .setAccelerationY(400)
+                    .setRotationalVelocity(45)
                     .animate();
             }
         });
