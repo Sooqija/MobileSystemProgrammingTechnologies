@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,12 +23,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
-// TODO Пофиксить баг с дверью
-// TODO Реализовать вторую правую комнату
-
-// TODO Реализовать логику ключей
-// TODO Реализовать машину состояний для нулевой комнаты
+// TODO Анимация файрбола
+// TODO Анимация талисмана овцы
+// TODO Реализовать Люк для завершения игры
+// TODO Анимация ухода в невидимость
+// TODO Анимация воды
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     DialogClick dialog_click;
     DialogChoose dialog_choose;
     DialogDone dialog_done;
+    DialogPause dialog_pause;
     ArrayList<String> TalismansNames = new ArrayList<>(Arrays.asList("Rooster Talisman", "Ox Talisman", "Snake Talisman",
                                                                      "Sheep Talisman", "Dragon Talisman", "Rabbit Talisman",
                                                                      "Rat Talisman", "Horse Talisman", "Monkey Talisman",
@@ -71,8 +75,10 @@ public class MainActivity extends AppCompatActivity {
         dialog_click = new DialogClick(MainActivity.this);
         dialog_choose = new DialogChoose(MainActivity.this);
         dialog_done = new DialogDone(MainActivity.this);
+        dialog_pause = new DialogPause(MainActivity.this);
 
-        mainRoom = new ZeroMainRoom(state0);
+        // This
+        mainRoom = new ZeroMainRoom(state0, 0);
     }
 
     public class ZeroMainRoom {
@@ -84,9 +90,9 @@ public class MainActivity extends AppCompatActivity {
         // Special
         ImageView Tower;
 
-        ZeroMainRoom (int state) {
+        ZeroMainRoom (int state, int who_was_that) {
             init();
-            startEntryAnimation();
+            startEntryAnimation(who_was_that);
 
             switch (state) {
                 case 0: {
@@ -107,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         void init () {
             setContentView(R.layout.activity_main);
-            setReset(findViewById(R.id.Reset));
+            activatePause(findViewById(R.id.Pause));
             JackieChan = findViewById(R.id.JackieChan);
             GoldKey = findViewById(R.id.Key);
             Tower = findViewById(R.id.Tower);
@@ -148,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             GoDown.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_go_down);
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_leave_main_to_down);
                     anim.setStartOffset(500);
                     anim.setAnimationListener(new Animation.AnimationListener() {
                         @Override public void onAnimationStart(Animation animation) { }
@@ -164,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             GoLeft.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_go_left);
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_leave_main_to_left);
                     anim.setStartOffset(500);
                     anim.setAnimationListener(new Animation.AnimationListener() {
                         @Override public void onAnimationStart(Animation animation) { }
@@ -179,8 +185,41 @@ public class MainActivity extends AppCompatActivity {
             });
         } // init
 
-        void startEntryAnimation() {
+        void startEntryAnimation(int who_was_that) {
             keyAnimation();
+            switch (who_was_that) {
+                case 0: {
+                    break;
+                }
+                case 1: {
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_leave_main_to_up);
+                    anim.setStartOffset(500);
+                    anim.setInterpolator(new ReverseInterpolator());
+                    JackieChan.startAnimation(anim);
+                    break;
+                }
+                case 2: {
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_leave_main_to_right);
+                    anim.setStartOffset(500);
+                    anim.setInterpolator(new ReverseInterpolator());
+                    JackieChan.startAnimation(anim);
+                    break;
+                }
+                case 3: {
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_leave_main_to_down);
+                    anim.setStartOffset(500);
+                    anim.setInterpolator(new ReverseInterpolator());
+                    JackieChan.startAnimation(anim);
+                    break;
+                }
+                case 4: {
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_leave_main_to_left);
+                    anim.setStartOffset(500);
+                    anim.setInterpolator(new ReverseInterpolator());
+                    JackieChan.startAnimation(anim);
+                    break;
+                }
+            }
         } // startEntryAnimation
     }
 
@@ -196,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView Toru;
         ImageView ShadowEater;
         ImageView Shadow;
+        TextView TimerView;
 
         OneAboveRoom (int state) {
             init();
@@ -233,13 +273,14 @@ public class MainActivity extends AppCompatActivity {
 
         void init () {
             setContentView(R.layout.activity_room1);
-            setReset(findViewById(R.id.Reset));
+            activatePause(findViewById(R.id.Pause));
             JackieChan = findViewById(R.id.JackieChan);
             GoldKey = findViewById(R.id.Key);
             Jade = findViewById(R.id.Jade);
             Toru = findViewById(R.id.Toru);
             ShadowEater = findViewById(R.id.ShadowEater);
             Shadow = findViewById(R.id.Shadow);
+            TimerView = findViewById(R.id.TimerView);
             order = 0;
 
             GoDown = findViewById(R.id.GoDown);
@@ -253,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override public void onAnimationStart(Animation animation) { }
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            mainRoom = new ZeroMainRoom(state0);
+                            mainRoom = new ZeroMainRoom(state0, 1);
                         }
                         @Override public void onAnimationRepeat(Animation animation) { }
                     });
@@ -315,6 +356,8 @@ public class MainActivity extends AppCompatActivity {
         ImageView Water;
         ImageView Stare;
         ImageView JackieChanCopy;
+        ImageView Brace;
+        TextView TimerView;
 
         TwoRightRoom (int state) {
             init();
@@ -357,6 +400,20 @@ public class MainActivity extends AppCompatActivity {
                             dialog_click.showDialog("Лестница была разрушена. Теперь тут осталась просто вода.");
                         }
                     });
+//                    JackieChanCopy.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            global_case = "JakieChanCopy";
+//                            dialog_click.showDialog("Ваша \"Ян\" половинка. Если с ней что-то случится, то и \"Инь\" половине тоже не сдобровать!");
+//                        }
+//                    });
+                    Brace.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            global_case = "Brace";
+                            dialog_click.showDialog("Кусок ржавого металла под водой. Не думаю, что от него много пользы.");
+                        }
+                    });
                     break;
                 }
                 case 1: {
@@ -367,8 +424,9 @@ public class MainActivity extends AppCompatActivity {
         } // constructor TwoRightRoom
 
         void init () {
+            order = 0;
             setContentView(R.layout.activity_room2);
-            setReset(findViewById(R.id.Reset));
+            activatePause(findViewById(R.id.Pause));
             JackieChan = findViewById(R.id.JackieChan);
             GoldKey = findViewById(R.id.Key);
             Ventile = findViewById(R.id.Ventile);
@@ -377,6 +435,8 @@ public class MainActivity extends AppCompatActivity {
             JackieChanCopy = findViewById(R.id.JackieChanCopy);
             Water = findViewById(R.id.Water);
             Stare = findViewById(R.id.Stare);
+            Brace = findViewById(R.id.Brace);
+            TimerView = findViewById(R.id.TimerView);
             GoLeft = findViewById(R.id.GoLeft);
             GoLeft.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -388,7 +448,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override public void onAnimationStart(Animation animation) { }
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            mainRoom = new ZeroMainRoom(state0);
+                            mainRoom = new ZeroMainRoom(state0, 2);
                         }
                         @Override public void onAnimationRepeat(Animation animation) { }
                     });
@@ -403,8 +463,6 @@ public class MainActivity extends AppCompatActivity {
             anim.setStartOffset(500);
             JackieChan.startAnimation(anim);
         } // startEntryAnimation
-
-
     }
 
     public class ThreeBelowRoom {
@@ -460,7 +518,7 @@ public class MainActivity extends AppCompatActivity {
                 case 1: {
                     JackieChan = findViewById(R.id.JackieChan);
                     dialog_done.showDialog("Завал. Пройти нельзя");
-                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_go_down);
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_leave_main_to_down);
                     anim.setStartOffset(500);
                     anim.setInterpolator(new ReverseInterpolator());
                     JackieChan.startAnimation(anim);
@@ -472,7 +530,7 @@ public class MainActivity extends AppCompatActivity {
 
         void init() {
             setContentView(R.layout.activity_room3);
-            setReset(findViewById(R.id.Reset));
+            activatePause(findViewById(R.id.Pause));
             JackieChan = findViewById(R.id.JackieChan);
             GoldKey = findViewById(R.id.Key);
             Wall = findViewById(R.id.Wall);
@@ -571,7 +629,7 @@ public class MainActivity extends AppCompatActivity {
 
         void init() {
             setContentView(R.layout.activity_room4);
-            setReset(findViewById(R.id.Reset));
+            activatePause(findViewById(R.id.Pause));
             JackieChan = findViewById(R.id.JackieChan);
             GoldKey = findViewById(R.id.Key);
             Uncle = findViewById(R.id.Uncle);
@@ -586,7 +644,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override public void onAnimationStart(Animation animation) { }
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            mainRoom = new ZeroMainRoom(state0);
+                            mainRoom = new ZeroMainRoom(state0, 4);
                         }
                         @Override public void onAnimationRepeat(Animation animation) { }
                     });
@@ -637,6 +695,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             @Override
                             public void onAnimationEnd(Animation animation) {
+                                state0 = 1;
                                 dialog_done.showDialog("Вы взлетаете на башню и достаете ключ.");
                             } @Override public void onAnimationRepeat(Animation animation) { }
                         });
@@ -745,7 +804,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onAnimationEnd(Animation animation) {
                                     dialog_done.showDialog("Вы успешно спаслись");
-                                    mainRoom = new ZeroMainRoom(state0);
+                                    mainRoom = new ZeroMainRoom(state0, 3);
                                 }
                                 @Override
                                 public void onAnimationRepeat(Animation animation) { }
@@ -866,7 +925,7 @@ public class MainActivity extends AppCompatActivity {
                                             Animation anim3 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_horse_talisman);
                                             aboveRoom.JackieChan.startAnimation(anim3);
                                             aboveRoom.Shadow.setVisibility(View.VISIBLE);
-                                            dialog_done.showDialogTimer("Ура, Тору в безопасности! Но применение талисмана вывело Вас из невидимости! Поедатель теней вот-вот съест Вашу тень, берегись!", 5000);
+                                            dialog_done.showDialogTimer("Ура, Тору в безопасности! Но применение талисмана вывело Вас из невидимости! Поедатель теней вот-вот съест Вашу тень, берегись!", "Вы не успели ничего сделать и пожиратель теней съел Вашу тень.", aboveRoom.TimerView, 10);
                                         }
                                         @Override
                                         public void onAnimationRepeat(Animation animation) {}
@@ -894,6 +953,7 @@ public class MainActivity extends AppCompatActivity {
                     case "Rabbit Talisman": {
                         TalismansNames.remove(current);
                         TalismansImages.remove(current);
+                        dialog_done.cancel();
                         aboveRoom.order++;
                         if (aboveRoom.order == 3) {
                             Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_rabbit_talisman);
@@ -967,10 +1027,39 @@ public class MainActivity extends AppCompatActivity {
                         TalismansImages.remove(current);
                         rightRoom.order++;
                         if (rightRoom.order == 1) {
-                            rightRoom.Stare.setVisibility(View.INVISIBLE);
-                            rightRoom.Water.setVisibility(View.VISIBLE);
-                            // TODO Анимация подхода к лестнице, клонировании и ее разрушение
-                            dialog_done.showDialogTimer("О нет, лестница разрушилась! Вы сейчас утоните.", 5000);
+                            rightRoom.JackieChanCopy.setVisibility(View.VISIBLE);
+                            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_tiger_talisman);
+                            anim.setStartOffset(500);
+                            Animation anim1 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_copy_tiger_talisman);
+                            anim1.setStartOffset(500);
+                            rightRoom.JackieChan.startAnimation(anim);
+                            rightRoom.JackieChanCopy.startAnimation(anim1);
+                            anim1.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) { }
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    Animation anim3 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_copy_move_to_stare);
+                                    anim3.setStartOffset(500);
+                                    rightRoom.JackieChanCopy.startAnimation(anim3);
+                                    anim3.setAnimationListener(new Animation.AnimationListener() {
+                                        @Override
+                                        public void onAnimationStart(Animation animation) {}
+                                        @Override
+                                        public void onAnimationEnd(Animation animation) {
+                                            rightRoom.Stare.setVisibility(View.INVISIBLE);
+                                            rightRoom.Water.setVisibility(View.VISIBLE);
+                                            GoLeft.setEnabled(false);
+                                            dialog_done.showDialogTimer("О нет, лестница разрушилась! Вы сейчас утоните.", "Вы не успели спастись и утонули.",rightRoom.TimerView, 10);
+                                        }
+                                        @Override
+                                        public void onAnimationRepeat(Animation animation) {}
+                                    });
+
+                                }
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {}
+                            });
                         }
                         break;
                     }
@@ -989,9 +1078,12 @@ public class MainActivity extends AppCompatActivity {
                     case "Monkey Talisman": {
                         TalismansNames.remove(current);
                         TalismansImages.remove(current);
+                        dialog_done.cancel();
                         rightRoom.order++;
                         if (rightRoom.order == 2) {
-                            // TODO Анимация превращения в краба
+                            rightRoom.JackieChanCopy.clearAnimation();
+                            rightRoom.JackieChanCopy.setVisibility(View.INVISIBLE);
+                            rightRoom.Crab.setVisibility(View.VISIBLE);
                             dialog_done.showDialog("Вы превратились в краба. Теперь вы не утоните.");
                         }
                         break;
@@ -1005,6 +1097,29 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             }
+//            case "JakieChanCopy": {
+//                switch (TalismansNames.get(current)) {
+//                    case "Monkey Talisman": {
+//                        TalismansNames.remove(current);
+//                        TalismansImages.remove(current);
+//                        rightRoom.order++;
+//                        if (rightRoom.order == 2) {
+//                            rightRoom.JackieChanCopy.clearAnimation();
+//                            rightRoom.JackieChanCopy.setVisibility(View.INVISIBLE);
+//                            rightRoom.Crab.setVisibility(View.VISIBLE);
+//                            dialog_done.showDialog("Вы превратились в краба. Теперь вы не утоните.");
+//                        }
+//                        break;
+//                    }
+//                    default: {
+//                        TalismansNames.remove(current);
+//                        TalismansImages.remove(current);
+//                        dialog_done.showDialogEndGame("Ничего не произошло");
+//                        break;
+//                    }
+//                }
+//                break;
+//            }
             case "Ventile": {
                 switch (TalismansNames.get(current)) {
                     case "Ox Talisman": {
@@ -1012,9 +1127,63 @@ public class MainActivity extends AppCompatActivity {
                         TalismansImages.remove(current);
                         rightRoom.order++;
                         if (rightRoom.order == 3) {
-                            // TODO Анимация вентиля, ключа, потока воды
                             GoLeft.setEnabled(false);
-                            dialog_done.showDialogTimer("Вы открыли клапан, ключ выплыл из дыры в трубе. Но напор воды стал хлещет с такой силой, что вентиль просто невыдержал нагрузки и сломался. Еще вот вот и вся комната будет затоплена!", 5000);
+                            // TODO Анимация вентиля, ключа, потока воды
+                            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_move_to_ventile);
+                            anim.setStartOffset(500);
+                            rightRoom.JackieChan.startAnimation(anim);
+                            anim.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {}
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    Animation anim1 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.ventile_rotate);
+                                    rightRoom.Ventile.startAnimation(anim1);
+                                    anim1.setAnimationListener(new Animation.AnimationListener() {
+                                        @Override
+                                        public void onAnimationStart(Animation animation) {}
+                                        @Override
+                                        public void onAnimationEnd(Animation animation) {
+                                            Animation anim2 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.gold_key);
+                                            anim2.setStartOffset(500);
+                                            rightRoom.GoldKey.setVisibility(View.VISIBLE);
+                                            rightRoom.GoldKey.startAnimation(anim2);
+                                            keys++;
+                                            keyAnimation();
+                                            anim2.setAnimationListener(new Animation.AnimationListener() {
+                                                @Override
+                                                public void onAnimationStart(Animation animation) { }
+                                                @Override
+                                                public void onAnimationEnd(Animation animation) {
+                                                    dialog_done.showDialogTimer("Вы открыли клапан, ключ выплыл из дыры в трубе. Но напор воды стал хлещет с такой силой, что вентиль просто невыдержал нагрузки и сломался. Еще вот вот и вся комната будет затоплена!", "Комната была затоплена, Вы проиграли. Еще раз?", rightRoom.TimerView, 5);
+                                                    Animation anim3 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.ventile_rotate);
+                                                    rightRoom.Ventile.startAnimation(anim3);
+                                                    anim3.setFillAfter(false);
+                                                    anim3.setAnimationListener(new Animation.AnimationListener() {
+                                                        @Override
+                                                        public void onAnimationStart(Animation animation) {}
+                                                        @Override
+                                                        public void onAnimationEnd(Animation animation) {
+                                                            rightRoom.Ventile.startAnimation(anim3);
+                                                        }
+                                                        @Override
+                                                        public void onAnimationRepeat(Animation animation) {
+                                                            rightRoom.Ventile.startAnimation(anim3);
+                                                        }
+                                                    });
+                                                }
+                                                @Override
+                                                public void onAnimationRepeat(Animation animation) {
+                                                }
+                                            });
+                                        }
+                                        @Override
+                                        public void onAnimationRepeat(Animation animation) {}
+                                    });
+                                }
+                                @Override
+                                public void onAnimationRepeat(Animation animation) { }
+                            });
                         }
                         break;
                     }
@@ -1027,16 +1196,36 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             }
-            case "Crack": {
+            case "Crack":
+            case "Brace": {
                 switch (TalismansNames.get(current)) {
                     case "Pig Talisman": {
                         TalismansNames.remove(current);
                         TalismansImages.remove(current);
+                        dialog_done.cancel();
                         rightRoom.order++;
                         if (rightRoom.order == 4) {
-                            // TODO Анимация сварки
-                            dialog_done.showDialog("Вы заварили дыру в трубе. Вы спасли сами себя.");
-                            GoLeft.setEnabled(true);
+                            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.crab_move_to_crack);
+                            anim.setStartOffset(500);
+                            rightRoom.Crab.setVisibility(View.VISIBLE);
+                            rightRoom.Crab.startAnimation(anim);
+                            rightRoom.Crab.setRotation(180);
+                            Animation anim1 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.brace_move_to_crack);
+                            anim1.setStartOffset(500);
+                            rightRoom.Brace.startAnimation(anim1);
+                            anim1.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {}
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    rightRoom.Ventile.clearAnimation();
+                                    rightRoom.Crack.setVisibility(View.INVISIBLE);
+                                    dialog_done.showDialog("Вы заварили дыру в трубе. Вы спаслись.");
+                                    GoLeft.setEnabled(true);
+                                }
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {}
+                            });
                         }
                         break;
                     }
@@ -1051,6 +1240,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     } // Do
+
 
     void keyAnimation () {
         ArrayList<Integer> Keys = new ArrayList<>(Arrays.asList(R.id.Key1, R.id.Key2, R.id.Key3, R.id.Key4, R.id.Key5));;
@@ -1162,6 +1352,10 @@ public class MainActivity extends AppCompatActivity {
         Dialog dialog;
         TextView DialogClickMessage;
         Button DialogDoneOK;
+        Timer timer;
+        int second = 0;
+        String show_time;
+        TextView TimerView;
 
         DialogDone(Context context) {
             dialog = new Dialog(context);
@@ -1201,24 +1395,108 @@ public class MainActivity extends AppCompatActivity {
             dialog.show();
         }
 
-        public void showDialogTimer(String message, int time) {
-            // TODO TimerDialog
+        public void showDialogTimer(String message, String end_message, TextView _TimerView, int time) {
+            TimerView = _TimerView;
             DialogClickMessage.setText(message);
             DialogDoneOK.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     dialog.dismiss();
+                    timer = new Timer();
+                    second = time;
+                    TimerView.setVisibility(View.VISIBLE);
+                    timer.schedule((TimerTask) (new TimerTask() {
+                        @Override
+                        public void run() {
+                            runOnUiThread((Runnable) (new Runnable() {
+                                public void run() {
+                                    if (second > 0) {
+                                        show_time = "0:";
+                                        show_time += (second < 10) ? "0" + String.valueOf(second) : String.valueOf(second);
+                                        second--;
+                                        second %= 60;
+                                        TimerView.setText(show_time);
+                                    } else {
+                                        timer.cancel();
+                                        TimerView.setVisibility(View.INVISIBLE);
+                                        dialog_done.showDialogEndGame(end_message);
+                                    }
+
+                                }
+                            }));
+                        }
+                    }), 0L, 1000L);
                 }
             });
             dialog.show();
         }
+
+        public void cancel() {
+            timer.cancel();
+            TimerView.setVisibility(View.INVISIBLE);
+        }
     } // DialogDone
 
-    void setReset (Button button) {
+    public class DialogPause {
+        Dialog dialog;
+        TextView DialogPauseMessage;
+
+        Button DialogPauseReset;
+        Button DialogPauseMenu;
+        Button DialogPauseRules;
+        Button DialogPauseBack;
+
+        DialogPause(Context context) {
+            dialog = new Dialog(context);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.dialog_menu);
+            DialogPauseMessage = dialog.findViewById(R.id.Message);
+            DialogPauseReset = dialog.findViewById(R.id.Reset);
+            DialogPauseMenu = dialog.findViewById(R.id.Menu);
+            DialogPauseRules = dialog.findViewById(R.id.Rules);
+            DialogPauseBack = dialog.findViewById(R.id.Back);
+            DialogPauseReset.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    resetGame();
+                }
+            });
+            DialogPauseMenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    Intent intent = new Intent(MainActivity.this, LoadGameActivity.class);
+                    startActivity(intent);
+                }
+            });
+            DialogPauseRules.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    Intent intent = new Intent(MainActivity.this, RulesActivity.class);
+                    startActivity(intent);
+                }
+            });
+            DialogPauseBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+        }
+
+        void showDialog() {
+            dialog.show();
+        }
+    } // DialogDone
+
+    void activatePause(Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetGame();
+                dialog_pause.showDialog();
             }
         });
     }
@@ -1238,8 +1516,14 @@ public class MainActivity extends AppCompatActivity {
         state3 = 0;
         state4 = 0;
         keys = 0;
+        adapter = new ListTalismanAdapter(MainActivity.this, R.layout.list_talisman, TalismansNames, TalismansImages);
         adapter.notifyDataSetChanged();
-        mainRoom = new ZeroMainRoom(state0);
+        dialog_click = new DialogClick(MainActivity.this);
+        dialog_choose = new DialogChoose(MainActivity.this);
+        dialog_done = new DialogDone(MainActivity.this);
+        dialog_pause = new DialogPause(MainActivity.this);
+
+        mainRoom = new ZeroMainRoom(state0, 0);
     }
 
     public class ListTalismanAdapter extends ArrayAdapter {

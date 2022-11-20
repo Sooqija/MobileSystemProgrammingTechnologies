@@ -10,6 +10,7 @@
     android:id="@+id/room1">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="125dp"
         android:layout_height="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -230,12 +231,28 @@
         app:layout_constraintVertical_bias="0.9"
         app:srcCompat="@drawable/jackie_chan" />
 
+    <TextView
+        android:id="@+id/TimerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#E91E63"
+        android:textSize="30sp"
+        android:text="0:00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:visibility="invisible"/>
+
+
     <Button
-        android:id="@+id/Reset"
+        android:id="@+id/Pause"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/selector"
-        android:text="&#x1F504;"
+        android:text="☰"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp"

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/Message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:text="Меню"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Reset"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/Message"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/selector"
+        android:foregroundGravity="center"
+        android:gravity="center_horizontal|top"
+        android:paddingTop="10dp"
+        android:text="Заново"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:backgroundTint="@null" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Menu"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/Reset"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/selector"
+        android:foregroundGravity="center"
+        android:gravity="center_horizontal|top"
+        android:paddingTop="10dp"
+        android:text="Главное меню"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:backgroundTint="@null"
+        android:layout_margin="10dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Rules"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/Menu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/selector"
+        android:foregroundGravity="center"
+        android:gravity="center_horizontal|top"
+        android:padding="10dp"
+        android:text="Правила"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:backgroundTint="@null" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Back"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/Rules"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/selector"
+        android:foregroundGravity="center"
+        android:gravity="center_horizontal|top"
+        android:padding="10dp"
+        android:text="Назад"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:backgroundTint="@null" />
+
+
+</RelativeLayout>

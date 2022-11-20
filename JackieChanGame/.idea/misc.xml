@@ -7,6 +7,7 @@
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/drawable/ic_launcher_background.xml" value="0.261" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/drawable/rect_for_key.xml" value="0.1" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/drawable/selector.xml" value="0.2395" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/activity_load_game.xml" value="0.2" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/activity_room1.xml" value="0.33" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/activity_room2.xml" value="0.25" />
@@ -14,6 +15,7 @@
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/activity_room4.xml" value="0.33152173913043476" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/dialog.xml" value="0.33152173913043476" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/dialog_done.xml" value="0.33152173913043476" />
+        <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/dialog_menu.xml" value="0.2994791666666667" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/dialog_talismans.xml" value="0.33" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/list_talisman.xml" value="0.259375" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/room2.xml" value="0.33152173913043476" />
@@ -21,10 +23,6 @@
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/mipmap-anydpi-v26/ic_launcher_jackie_chan_foreground.xml" value="0.1515" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/mipmap-anydpi-v26/ic_launcher_jackie_chan_foreground_round.xml" value="0.1" />
         <entry key="..\:/StudyMaterial/Program_Code/4_1/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.261" />
-        <entry key="..\:/Users/tramp/OneDrive/Documents/GitHub/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/drawable/black.xml" value="0.1965" />
-        <entry key="..\:/Users/tramp/OneDrive/Documents/GitHub/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/activity_load_game.xml" value="0.264" />
-        <entry key="..\:/Users/tramp/OneDrive/Documents/GitHub/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/tramp/OneDrive/Documents/GitHub/MobileSystemProgrammingTechnologies/JackieChanGame/app/src/main/res/layout/activity_rules.xml" value="0.27447916666666666" />
       </map>
     </option>
   </component>

@@ -190,11 +190,11 @@
         app:srcCompat="@drawable/jackie_chan" />
 
     <Button
-        android:id="@+id/Reset"
+        android:id="@+id/Pause"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/selector"
-        android:text="&#x1F504;"
+        android:text="☰"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp"

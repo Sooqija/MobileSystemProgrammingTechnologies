@@ -180,6 +180,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/room22" />
 
+
+
     <ImageView
         android:id="@+id/Pipe3"
         android:layout_width="321dp"
@@ -243,11 +245,24 @@
         android:rotationX="-10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.216"
+        app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.769"
+        app:layout_constraintVertical_bias="0.754"
         app:srcCompat="@drawable/ventile" />
+
+    <ImageView
+        android:id="@+id/Brace"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:rotationX="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.61"
+        app:srcCompat="@drawable/brace" />
 
     <ImageView
         android:id="@+id/Crab"
@@ -260,19 +275,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.6"
         app:srcCompat="@drawable/krab"
+        android:rotation="180"
         android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/Key"
-        android:layout_width="98dp"
-        android:layout_height="133dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.974"
+        app:layout_constraintHorizontal_bias="0.767"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942"
+        app:layout_constraintVertical_bias="0.809"
         app:srcCompat="@drawable/key" />
 
     <ImageView
@@ -301,11 +317,11 @@
         android:visibility="invisible"/>
 
     <Button
-        android:id="@+id/Reset"
+        android:id="@+id/Pause"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/selector"
-        android:text="&#x1F504;"
+        android:text="☰"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -316,6 +332,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/TimerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#E91E63"
+        android:textSize="30sp"
+        android:text="0:00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/GoUp"
