@@ -6,13 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".RulesActivity">
 
+    <ListView
+        android:id="@+id/ListTalismans"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_below="@id/backward_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"/>
+
     <Button
         android:id="@+id/backward_btn"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="175dp"
         android:layout_height="60dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="332dp"
         android:fontFamily="sans-serif-black"
         android:gravity="start|fill"
         android:text="Назад"
@@ -20,7 +30,11 @@
         android:textColor="#000000"
         android:textSize="30dp"
         app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
