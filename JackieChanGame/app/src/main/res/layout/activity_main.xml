@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/room0"
     android:backgroundTint="@null"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/room0">
 
 
     <LinearLayout

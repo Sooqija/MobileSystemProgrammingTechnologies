@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.tutorials.android.particles.CommonParticles;
 import com.tutorials.android.particles.ParticlesGenerator;
 import com.tutorials.android.particles.ParticlesManager;
 import com.tutorials.android.particles.ParticlesSource;
@@ -112,31 +113,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             global_case = "Tower";
-                            dialog_click.showDialog("This is a tower. One of the key on the roof.");
-                        }
-                    });
-                    Exit.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (keys != 5) {
-                                dialog_click.showDialog("Не могу открыть эту дверь. Видимо он заперта на 5 магических ключей. Где бы найти их?");
-                            } else {
-                                Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_exit);
-                                JackieChan.startAnimation(anim);
-                                anim.setAnimationListener(new Animation.AnimationListener() {
-                                    @Override
-                                    public void onAnimationStart(Animation animation) { }
-                                    @Override
-                                    public void onAnimationEnd(Animation animation) {
-                                        Door.setVisibility(View.INVISIBLE);
-                                        JackieChan.clearAnimation();
-                                        JackieChan.setVisibility(View.INVISIBLE);
-                                        dialog_done.showDialogEndGame("Вы прошли игру! Поздравляем.");
-                                    }
-                                    @Override
-                                    public void onAnimationRepeat(Animation animation) { }
-                                });
-                            }
+                            dialog_click.showDialog("Это башня. Ключ расположен на ее вершине.");
                         }
                     });
                     break;
@@ -219,6 +196,30 @@ public class MainActivity extends AppCompatActivity {
                         @Override public void onAnimationRepeat(Animation animation) { }
                     });
                     JackieChan.startAnimation(anim);
+                }
+            });
+            Exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (keys != 5) {
+                        dialog_click.showDialog("Не могу открыть эту дверь. Видимо он заперта на 5 магических ключей. Где бы найти их?");
+                    } else {
+                        Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_exit);
+                        JackieChan.startAnimation(anim);
+                        anim.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) { }
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                Door.setVisibility(View.INVISIBLE);
+                                JackieChan.clearAnimation();
+                                JackieChan.setVisibility(View.INVISIBLE);
+                                dialog_done.showDialogEndGameWin("Вы прошли игру! Поздравляем.");
+                            }
+                            @Override
+                            public void onAnimationRepeat(Animation animation) { }
+                        });
+                    }
                 }
             });
         } // init
@@ -629,11 +630,10 @@ public class MainActivity extends AppCompatActivity {
                             dialog_click.showDialog("Это Дядя. Он спит. Наверное, он изучал магию ключей. Будет лучше, если его не будить.");
                         }
                     });
-
                     GoldKey.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (order == 1) {
+                            if (order != 2) {
                                 dialog_done.showDialogEndGame("Звон ключей разбудил дядю! Он поручил Вам подмести лавку. Вы програли. Еще раз?");
                             } else if (order == 2) {
                                 Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.jakie_dog_talisman);
@@ -705,10 +705,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void Do() {
         switch (global_case) {
+            default: {
+                TalismansNames.remove(current);
+                TalismansImages.remove(current);
+                dialog_done.showDialog("Ничего не произошло.");
+            }
             case "Tower": {
                 switch (TalismansNames.get(current)) {
                     case "Rooster Talisman": {
-                        keys++; // !!!
                         TalismansNames.remove(current);
                         TalismansImages.remove(current);
                         Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.tower);
@@ -718,26 +722,21 @@ public class MainActivity extends AppCompatActivity {
                         Animation anim2 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.gold_key);
 
                         anim.setAnimationListener(new Animation.AnimationListener() {
-                            @Override public void onAnimationStart(Animation animation) {
-//                                    CommonParticles.rainingParticles(findViewById(R.id.Jackie), new int[] {
-//                                            Color.BLACK,Color.BLUE,Color.GREEN,Color.RED,Color.YELLOW
-//                                    }).oneShot();
-                            }
+                            @Override public void onAnimationStart(Animation animation) { }
                             @Override
                             public void onAnimationEnd(Animation animation) {
                                 mainRoom.JackieChan.startAnimation(anim1);
                                 mainRoom.GoldKey.startAnimation(anim2);
+                                keys++;
                                 keyAnimation();
+                                state0 = 1;
                             } @Override public void onAnimationRepeat(Animation animation) { }
                         });
                         anim1.setAnimationListener(new Animation.AnimationListener() {
                             @Override
-                            public void onAnimationStart(Animation animation) {
-
-                            }
+                            public void onAnimationStart(Animation animation) {}
                             @Override
                             public void onAnimationEnd(Animation animation) {
-                                state0 = 1;
                                 dialog_done.showDialog("Вы взлетаете на башню и достаете ключ.");
                             } @Override public void onAnimationRepeat(Animation animation) { }
                         });
@@ -748,7 +747,7 @@ public class MainActivity extends AppCompatActivity {
                     default: {
                         TalismansNames.remove(current);
                         TalismansImages.remove(current);
-                        dialog_done.showDialog("Nothing happened");
+                        dialog_done.showDialog("Ничего не произошло");
                         break;
                     }
                 }
@@ -1121,7 +1120,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void onAnimationRepeat(Animation animation) { }
                             });
 
-                  } else {
+                        } else {
                             dialog_done.showDialogEndGame("Вы выходите на свет к Джейд и Вашу тень поглощает пожиратель теней. Вы проиграли. Еще раз?");
                         }
                         break;
@@ -1182,7 +1181,7 @@ public class MainActivity extends AppCompatActivity {
                     default: {
                         TalismansNames.remove(current);
                         TalismansImages.remove(current);
-                        dialog_done.showDialogEndGame("Лестница разрушилась, вы утонули.");
+                        dialog_done.showDialog("Ничего не произошло.");
                         break;
                     }
 
@@ -1207,7 +1206,7 @@ public class MainActivity extends AppCompatActivity {
                     default: {
                         TalismansNames.remove(current);
                         TalismansImages.remove(current);
-                        dialog_done.showDialogEndGame("Ничего не произошло");
+                        dialog_done.showDialog("Ничего не произошло");
                         break;
                     }
                 }
@@ -1307,7 +1306,7 @@ public class MainActivity extends AppCompatActivity {
                     default: {
                         TalismansNames.remove(current);
                         TalismansImages.remove(current);
-                        dialog_done.showDialogEndGame("Ничего не произошло.");
+                        dialog_done.showDialog("Ничего не произошло.");
                         break;
                     }
                 }
@@ -1343,6 +1342,8 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onAnimationRepeat(Animation animation) {}
                             });
+                        } else {
+                            dialog_done.showDialogEndGame("Ничего не произошло.");
                         }
                         break;
                     }
@@ -1443,10 +1444,10 @@ public class MainActivity extends AppCompatActivity {
                     DialogChooseUseTalisman.setEnabled(true);
                     for (int i = 0; i < TalismansNames.size(); i++) {
                         View view1 = getViewByPosition(i, listView);
-                        view1.setBackgroundColor(Color.WHITE);
+                        view1.setBackgroundResource(0);
                     }
                     View view1 = getViewByPosition(position, listView);
-                    view1.setBackgroundColor(Color.GREEN);
+                    view1.setBackgroundResource(R.drawable.rect);
                 }
             });
         }
@@ -1506,6 +1507,24 @@ public class MainActivity extends AppCompatActivity {
 
         public void showDialogEndGame(String message) {
             DialogClickMessage.setText(message);
+            setContentView(R.layout.end_game);
+            DialogDoneOK.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    resetGame();
+                }
+            });
+            dialog.show();
+        }
+
+        public void showDialogEndGameWin(String message) {
+            DialogClickMessage.setText(message);
+            setContentView(R.layout.win_game);
+            ViewGroup container = findViewById(R.id.win_game);
+            CommonParticles.rainingParticles(container, new int[] {
+                    Color.BLACK,Color.BLUE,Color.GREEN,Color.RED,Color.YELLOW
+            }).oneShot();
             DialogDoneOK.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -1647,7 +1666,7 @@ public class MainActivity extends AppCompatActivity {
         void showDialog() {
             dialog.show();
         }
-    } // DialogDone
+    } // DialogPause
 
     void activatePause(Button button) {
         button.setOnClickListener(new View.OnClickListener() {
@@ -1682,7 +1701,6 @@ public class MainActivity extends AppCompatActivity {
 
         mainRoom = new ZeroMainRoom(state0, 0);
     }
-
     public class ListTalismanAdapter extends ArrayAdapter {
 
         private final int resourceLayout;
